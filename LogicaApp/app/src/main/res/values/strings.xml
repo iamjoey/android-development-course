@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Logica App</string>
+    <string name="firstColumn">A</string>
+    <string name="secondColumn">B</string>
+    <string name="thirdColumn">A ^ B</string>
+</resources>

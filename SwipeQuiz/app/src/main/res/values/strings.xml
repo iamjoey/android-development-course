@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Swipe Quiz Kotlin</string>
+    <string name="tvTitle">Quiz Instructions</string>
+    <string name="tvInstructions">Swipe left for true, swipe right for false.</string>
+</resources>
