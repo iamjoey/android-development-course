@@ -1,5 +1,6 @@
 package com.iamjoey.heartstonejson
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,13 +14,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.math.floor
 import androidx.lifecycle.Observer
 
+const val EXTRA_CARD = "EXTRA_CARD"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainActivityViewModel
 
     private val cards = arrayListOf<Card>()
 
-    private val cardAdapter = CardAdapter(cards) {}
+    private val cardAdapter = CardAdapter(cards) {card -> onCardClick(card) }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,18 +43,18 @@ class MainActivity : AppCompatActivity() {
             false
         )
 
-        rvMovies.layoutManager = gridLayoutManager
+        rvCards.layoutManager = gridLayoutManager
 
         // Global Layout Listener which will calculate the span count.
-        rvMovies.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+        rvCards.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
-                rvMovies.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                rvCards.viewTreeObserver.removeOnGlobalLayoutListener(this)
                 gridLayoutManager.spanCount = calculateSpanCount()
                 gridLayoutManager.requestLayout()
             }
         })
 
-        rvMovies.adapter = cardAdapter
+        rvCards.adapter = cardAdapter
     }
 
     private fun initViewModel() {
@@ -71,12 +76,18 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun onCardClick(card: Card) {
+        val intent = Intent(this, CardDetailActivity::class.java)
+        intent.putExtra(EXTRA_CARD, card)
+        startActivityForResult(intent, 100)
+    }
+
     /**
      * Calculate the number of spans for the recycler view based on the recycler view width.
      * @return int number of spans.
      */
     private fun calculateSpanCount(): Int {
-        val viewWidth = rvMovies.measuredWidth
+        val viewWidth = rvCards.measuredWidth
         val cardViewWidth = resources.getDimension(R.dimen.poster_width)
         val cardViewMargin = resources.getDimension(R.dimen.margin_medium)
         val spanCount = floor((viewWidth / (cardViewWidth + cardViewMargin)).toDouble()).toInt()

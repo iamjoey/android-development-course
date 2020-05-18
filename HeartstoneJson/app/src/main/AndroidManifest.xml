@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".CardDetailActivity"
+            android:theme="@style/AppThemeNoActionBar"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
         <activity android:name=".MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
