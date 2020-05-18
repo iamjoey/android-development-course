@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Numbers Kotlin</string>
+    <string name="action_settings">Settings</string>
+    <string name="click_the_button">Click the button to get a random number</string>
+    <string name="trivia">Trivia</string>
+</resources>
