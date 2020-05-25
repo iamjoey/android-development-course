@@ -12,12 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".CardDetailActivity"
+        <activity android:name=".ui.card.CardDetailActivity"
             android:theme="@style/AppThemeNoActionBar"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
         </activity>
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.deck.DeckActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".ui.main.MainActivity">
+        </activity>
+
+        <activity android:name=".ui.main.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

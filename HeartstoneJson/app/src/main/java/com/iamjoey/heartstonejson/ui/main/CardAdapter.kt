@@ -1,4 +1,4 @@
-package com.iamjoey.heartstonejson
+package com.iamjoey.heartstonejson.ui.main
 
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import android.view.LayoutInflater
 import com.iamjoey.heartstonejson.model.Card
 import androidx.recyclerview.widget.RecyclerView
+import com.iamjoey.heartstonejson.R
 
 import kotlinx.android.synthetic.main.card_item.view.*
 
