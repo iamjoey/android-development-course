@@ -19,7 +19,7 @@ interface CardDao {
     suspend fun insertCard(card: Card)
 
     @Delete
-    suspend fun deleteGame(card: Card)
+    suspend fun deleteCard(card: Card)
 
     @Query("DELETE FROM cardTable")
     suspend fun deleteAllCards()

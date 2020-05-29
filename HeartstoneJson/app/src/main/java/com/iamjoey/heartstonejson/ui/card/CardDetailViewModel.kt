@@ -2,7 +2,6 @@ package com.iamjoey.heartstonejson.ui.card
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import com.iamjoey.heartstonejson.database.CardRepository
 import com.iamjoey.heartstonejson.model.Card
 

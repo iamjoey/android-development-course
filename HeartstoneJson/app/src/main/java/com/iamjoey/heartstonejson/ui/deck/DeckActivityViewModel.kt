@@ -12,10 +12,23 @@ import com.iamjoey.heartstonejson.model.Card
 import com.iamjoey.heartstonejson.model.CardPage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DeckActivityViewModel(application: Application) : AndroidViewModel(application) {
 
     private val cardRepository = CardRepository(application.applicationContext)
 
     val cards: LiveData<List<Card>> = cardRepository.getCards()
+
+    private val ioScope = CoroutineScope(Dispatchers.IO)
+
+    fun deleteCard(card: Card) {
+        ioScope.launch {
+            cardRepository.deleteCard(card)
+        }
+    }
+
+    fun deleteAllCards() {
+        ioScope.launch { cardRepository.deleteAllCards() }
+    }
 }

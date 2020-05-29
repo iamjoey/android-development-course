@@ -25,10 +25,10 @@ class CardRepository(context: Context) {
     }
 
     suspend fun deleteCard(card: Card) {
-        return cardDao.deleteGame(card)
+        return cardDao.deleteCard(card)
     }
 
-    suspend fun deleteAllGames() {
+    suspend fun deleteAllCards() {
         return cardDao.deleteAllCards()
     }
 }

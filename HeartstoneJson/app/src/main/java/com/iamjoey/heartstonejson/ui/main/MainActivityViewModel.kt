@@ -47,4 +47,10 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
             cardRepository.insertCard(card)
         }
     }
+
+    fun deleteCard(card: Card) {
+        ioScope.launch {
+            cardRepository.deleteCard(card)
+        }
+    }
 }

@@ -25,7 +25,9 @@ import kotlinx.coroutines.withContext
 
 const val EXTRA_CARD = "EXTRA_CARD"
 
-const val ADD_CARD_REQUEST_CODE = 100
+const val ADD_CARD_RESULT_CODE = 200
+
+const val DELETE_CARD_RESULT_CODE = 300
 
 class MainActivity : AppCompatActivity() {
 
@@ -119,15 +121,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                ADD_CARD_REQUEST_CODE -> {
-                    val card = data!!.getParcelableExtra<Card>(EXTRA_CARD)
-                    viewModel.insertCard(card)
-                    Toast.makeText(applicationContext, "Card added to deck!", Toast.LENGTH_SHORT).show()
-                }
-                else -> super.onActivityResult(requestCode, resultCode, data)
-            }
+        if (resultCode == ADD_CARD_RESULT_CODE) {
+            val card = data!!.getParcelableExtra<Card>(EXTRA_CARD)
+            viewModel.insertCard(card)
+            Toast.makeText(applicationContext, "Card added to deck!", Toast.LENGTH_SHORT).show()
         }
+
+        if (resultCode == DELETE_CARD_RESULT_CODE) {
+            val card = data!!.getParcelableExtra<Card>(EXTRA_CARD)
+            viewModel.deleteCard(card)
+            Toast.makeText(applicationContext, "Card removed from deck!", Toast.LENGTH_SHORT).show()
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

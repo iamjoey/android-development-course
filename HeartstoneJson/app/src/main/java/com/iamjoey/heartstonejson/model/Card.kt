@@ -22,4 +22,5 @@ data class Card(
 
 ) :Parcelable {
     fun getCardUrl() = "https://art.hearthstonejson.com/v1/render/latest/enUS/512x/$id.png"
+    fun getCardTile() = "https://art.hearthstonejson.com/v1/tiles/$id.jpg"
 }
