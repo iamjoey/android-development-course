@@ -1,27 +1,22 @@
 package com.iamjoey.heartstonejson.ui.main
 
-import android.app.Activity
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import android.view.ViewTreeObserver
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.iamjoey.heartstonejson.model.Card
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.math.floor
+import android.view.View
+import android.os.Bundle
+import android.widget.Toast
+import android.content.Intent
 import androidx.lifecycle.Observer
-import com.iamjoey.heartstonejson.*
-import com.iamjoey.heartstonejson.database.CardRepository
-import com.iamjoey.heartstonejson.ui.card.CardDetailActivity
+import com.iamjoey.heartstonejson.R
+import android.view.ViewTreeObserver
+import androidx.lifecycle.ViewModelProvider
+import com.iamjoey.heartstonejson.model.Card
+import androidx.appcompat.app.AppCompatActivity
+import com.iamjoey.heartstonejson.model.CardItem
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_main.*
+import androidx.recyclerview.widget.GridLayoutManager
 import com.iamjoey.heartstonejson.ui.deck.DeckActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.iamjoey.heartstonejson.ui.card.CardDetailActivity
 
 const val EXTRA_CARD = "EXTRA_CARD"
 
@@ -30,28 +25,19 @@ const val ADD_CARD_RESULT_CODE = 200
 const val DELETE_CARD_RESULT_CODE = 300
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var viewModel: MainActivityViewModel
 
-    private lateinit var cardRepository: CardRepository
+    private val cards = Card()
 
-    private val cards = arrayListOf<Card>()
-
-    private val cardAdapter =
-        CardAdapter(cards) { card ->
-            onCardClick(
-                card
-            )
-        }
+    private val cardAdapter = CardAdapter(cards) { cardItem -> onCardClick(cardItem) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        cardRepository = CardRepository(this)
-
         initViews()
         initViewModel()
+
         viewModel.getCards()
     }
 
@@ -88,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.cardsPage.observe(this, Observer {
             cards.clear()
-            cards.addAll(it.cards)
+            cards.addAll(it)
             cardAdapter.notifyDataSetChanged()
         })
 
@@ -102,9 +88,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun onCardClick(card: Card) {
+    private fun onCardClick(cardItem: CardItem) {
         val intent = Intent(this, CardDetailActivity::class.java)
-        intent.putExtra(EXTRA_CARD, card)
+        intent.putExtra(EXTRA_CARD, cardItem)
         startActivityForResult(intent, 100)
     }
 
@@ -122,17 +108,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == ADD_CARD_RESULT_CODE) {
-            val card = data!!.getParcelableExtra<Card>(EXTRA_CARD)
+            val card = data!!.getParcelableExtra<CardItem>(EXTRA_CARD)
             viewModel.insertCard(card)
             Toast.makeText(applicationContext, "Card added to deck!", Toast.LENGTH_SHORT).show()
         }
 
         if (resultCode == DELETE_CARD_RESULT_CODE) {
-            val card = data!!.getParcelableExtra<Card>(EXTRA_CARD)
+            val card = data!!.getParcelableExtra<CardItem>(EXTRA_CARD)
             viewModel.deleteCard(card)
             Toast.makeText(applicationContext, "Card removed from deck!", Toast.LENGTH_SHORT).show()
         }
 
         super.onActivityResult(requestCode, resultCode, data)
     }
+
 }

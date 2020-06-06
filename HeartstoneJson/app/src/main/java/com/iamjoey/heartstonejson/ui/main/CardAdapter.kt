@@ -5,14 +5,13 @@ import android.view.ViewGroup
 import android.content.Context
 import com.bumptech.glide.Glide
 import android.view.LayoutInflater
-import com.iamjoey.heartstonejson.model.Card
-import androidx.recyclerview.widget.RecyclerView
 import com.iamjoey.heartstonejson.R
-
+import androidx.recyclerview.widget.RecyclerView
+import com.iamjoey.heartstonejson.model.CardItem
 import kotlinx.android.synthetic.main.card_item.view.*
 
-class CardAdapter(private val cards: List<Card>,
-                   private val onClick: (Card) -> Unit
+class CardAdapter(private val cards: List<CardItem>,
+                  private val onClick: (CardItem) -> Unit
 ) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
 
     private lateinit var context: Context
@@ -39,8 +38,8 @@ class CardAdapter(private val cards: List<Card>,
             }
         }
 
-        fun bind(card: Card, number: Int) {
-            Glide.with(context).load(card.getCardUrl()).into(itemView.ivPoster)
+        fun bind(cardItem: CardItem, number: Int) {
+            Glide.with(context).load(cardItem.getCardImage()).into(itemView.ivPoster)
         }
     }
 

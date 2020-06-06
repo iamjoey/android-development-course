@@ -2,22 +2,22 @@ package com.iamjoey.heartstonejson.ui.deck
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.view.MenuItem
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.ItemTouchHelper
 import com.iamjoey.heartstonejson.R
-import com.iamjoey.heartstonejson.model.Card
+import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.iamjoey.heartstonejson.model.CardItem
+import androidx.recyclerview.widget.ItemTouchHelper
 import kotlinx.android.synthetic.main.deck_activity.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
 
 class DeckActivity: AppCompatActivity() {
 
-    private val cards = arrayListOf<Card>()
+    private val cards = arrayListOf<CardItem>()
 
     private val deckCardAdapter = DeckCardAdapter(cards)
 

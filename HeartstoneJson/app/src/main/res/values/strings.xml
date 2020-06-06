@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">HeartstoneJson</string>
+    <string name="app_name">Deck maker</string>
+    <string name="deck_name">My deck</string>
 </resources>

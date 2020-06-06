@@ -2,7 +2,7 @@ package com.iamjoey.heartstonejson.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.iamjoey.heartstonejson.model.Card
+import com.iamjoey.heartstonejson.model.CardItem
 
 class CardRepository(context: Context) {
     private val cardDao: CardDao
@@ -12,20 +12,20 @@ class CardRepository(context: Context) {
         cardDao = database!!.cardDao()
     }
 
-    fun findById(id: String): Card {
+    fun findById(id: String): CardItem {
         return cardDao.findById(id)
     }
 
-    fun getCards(): LiveData<List<Card>> {
+    fun getCards(): LiveData<List<CardItem>> {
         return cardDao.getCards()
     }
 
-    suspend fun insertCard(card: Card) {
-        return cardDao.insertCard(card)
+    suspend fun insertCard(cardItem: CardItem) {
+        return cardDao.insertCard(cardItem)
     }
 
-    suspend fun deleteCard(card: Card) {
-        return cardDao.deleteCard(card)
+    suspend fun deleteCard(cardItem: CardItem) {
+        return cardDao.deleteCard(cardItem)
     }
 
     suspend fun deleteAllCards() {
