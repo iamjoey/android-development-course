@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Deck maker</string>
     <string name="deck_name">My deck</string>
+    <string name="remove_card_from_deck_btn">Remove from deck</string>
+    <string name="add_card_to_deck_btn">Add to deck</string>
+    <string name="card_removed_toast">Card removed from deck!</string>
+    <string name="card_added_toast">Card added to deck!</string>
+    <string name="card_image">Card Image</string>
+    <string name="clear_deck">CLEAR DECK</string>
 </resources>

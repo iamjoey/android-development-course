@@ -77,7 +77,7 @@ class DeckActivity: AppCompatActivity() {
                 val position = viewHolder.adapterPosition
                 val cardToDelete = cards[position]
                 viewModel.deleteCard(cardToDelete)
-                Toast.makeText(applicationContext, "Card removed from deck!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.card_removed_toast), Toast.LENGTH_SHORT).show()
                 getDeckFromDatabase()
             }
         }

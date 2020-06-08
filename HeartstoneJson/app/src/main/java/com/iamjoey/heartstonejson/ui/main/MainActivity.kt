@@ -110,13 +110,13 @@ class MainActivity : AppCompatActivity() {
         if (resultCode == ADD_CARD_RESULT_CODE) {
             val card = data!!.getParcelableExtra<CardItem>(EXTRA_CARD)
             viewModel.insertCard(card)
-            Toast.makeText(applicationContext, "Card added to deck!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, getString(R.string.card_added_toast), Toast.LENGTH_SHORT).show()
         }
 
         if (resultCode == DELETE_CARD_RESULT_CODE) {
             val card = data!!.getParcelableExtra<CardItem>(EXTRA_CARD)
             viewModel.deleteCard(card)
-            Toast.makeText(applicationContext, "Card removed from deck!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, getString(R.string.card_removed_toast), Toast.LENGTH_SHORT).show()
         }
 
         super.onActivityResult(requestCode, resultCode, data)

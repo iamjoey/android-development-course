@@ -35,7 +35,7 @@ class CardDetailActivity : AppCompatActivity() {
         resultIntent.putExtra(EXTRA_CARD, card)
 
         if (viewModel.isAddedToDeck(card.id)) {
-            btn.text = "Remove from deck"
+            btn.text = getString(R.string.remove_card_from_deck_btn)
             btn.setOnClickListener {
                 setResult(DELETE_CARD_RESULT_CODE, resultIntent)
                 finish()
@@ -54,7 +54,7 @@ class CardDetailActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        cardItem = intent.extras?.getParcelable("EXTRA_CARD")!!
+        cardItem = intent.extras?.getParcelable(EXTRA_CARD)!!
         Glide.with(this).load(cardItem.getCardImage()).into(ivPoster)
         setTitle(cardItem.name)
     }

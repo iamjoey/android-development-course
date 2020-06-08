@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.iamjoey.heartstonejson.model.CardItem
 import kotlinx.android.synthetic.main.card_item.view.*
 
-class CardAdapter(private val cards: List<CardItem>,
-                  private val onClick: (CardItem) -> Unit
+class CardAdapter(
+    private val cards: List<CardItem>,
+    private val onClick: (CardItem) -> Unit
 ) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
 
     private lateinit var context: Context
