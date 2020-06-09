@@ -41,7 +41,7 @@ class CardDetailActivity : AppCompatActivity() {
                 finish()
             }
         } else {
-            btn.text = "Add to deck"
+            btn.text = getString(R.string.add_card_to_deck_btn)
             btn.setOnClickListener {
                 setResult(ADD_CARD_RESULT_CODE, resultIntent)
                 finish()
@@ -49,13 +49,13 @@ class CardDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(this).get(CardDetailViewModel::class.java)
-    }
-
     private fun initViews() {
         cardItem = intent.extras?.getParcelable(EXTRA_CARD)!!
         Glide.with(this).load(cardItem.getCardImage()).into(ivPoster)
         setTitle(cardItem.name)
+    }
+
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(this).get(CardDetailViewModel::class.java)
     }
 }

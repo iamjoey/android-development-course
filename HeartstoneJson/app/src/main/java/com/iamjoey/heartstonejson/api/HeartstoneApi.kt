@@ -14,13 +14,13 @@ class HeartstoneApi {
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build()
 
-            val moviesApi = Retrofit.Builder()
+            val api = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-            return moviesApi.create(HeartstoneApiService::class.java)
+            return api.create(HeartstoneApiService::class.java)
         }
     }
 }
